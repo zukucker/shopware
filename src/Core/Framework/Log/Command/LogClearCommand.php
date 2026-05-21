@@ -2,6 +2,7 @@
 
 namespace Shopware\Core\Framework\Log\Command;
 
+use Shopware\Core\Framework\Adapter\Console\ShopwareStyle;
 use Shopware\Core\Framework\Log\LogCleanupService;
 use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +29,14 @@ class LogClearCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->logCleanupService->clear();
-        return 0;
+        $io = new ShopwareStyle($input, $output);
+        try{
+            $io->comment(\sprintf('Clearing all logs'));
+            $this->logCleanupService->clear();
+            $io->success(\sprintf('Cleared all logs'));
+            return self::SUCCESS;
+        }catch(\Throwable $e){
+            return self::FAILURE;
+        }
     }
 }
