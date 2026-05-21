@@ -30,7 +30,7 @@ class LogClearCommand extends Command
 
     protected function configure(): void
     {
-            $this->addOption('days', 'd', InputOption::VALUE_REQUIRED, 'Clear logs older than x days');
+        $this->addOption('days', 'd', InputOption::VALUE_REQUIRED, 'Clear logs older than x days');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
