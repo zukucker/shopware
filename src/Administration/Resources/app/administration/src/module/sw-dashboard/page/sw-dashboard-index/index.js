@@ -22,41 +22,41 @@ export default Shopware.Component.wrapComponentConfig({
     },
 
     computed: {
-        welcomeMessage() {
-            const greetingName = this.greetingName;
-            const welcomeMessage = this.$t(
-                this.cachedHeadlineGreetingKey,
-                {
-                    greetingName,
-                },
-                1,
-            );
+        //welcomeMessage() {
+            //const greetingName = this.greetingName;
+            //const welcomeMessage = this.$t(
+                //this.cachedHeadlineGreetingKey,
+                //{
+                    //greetingName,
+                //},
+                //1,
+            //);
 
-            // in the headline we want to greet the user by his firstname
-            // if his first name is not available, we remove the personalized greeting part
-            // but we want to make sure the punctuation like `.`, `!` or `?` is kept
-            // for example "Still awake, ?" -> "Still awake?"…
-            if (!greetingName) {
-                return welcomeMessage.replace(/\,\s*/, '');
-            }
+            //// in the headline we want to greet the user by his firstname
+            //// if his first name is not available, we remove the personalized greeting part
+            //// but we want to make sure the punctuation like `.`, `!` or `?` is kept
+            //// for example "Still awake, ?" -> "Still awake?"…
+            //if (!greetingName) {
+                //return welcomeMessage.replace(/\,\s*/, '');
+            //}
 
-            return welcomeMessage;
-        },
+            //return welcomeMessage;
+        //},
 
-        welcomeSubline() {
-            return this.$t(this.getGreetingTimeKey('daytimeWelcomeText'));
-        },
+        //welcomeSubline() {
+            //return this.$t(this.getGreetingTimeKey('daytimeWelcomeText'));
+        //},
 
-        greetingName() {
-            const { currentUser } = Shopware.Store.get('session');
+        //greetingName() {
+            //const { currentUser } = Shopware.Store.get('session');
 
-            // if currentUser?.firstName returns a loose falsy value
-            // like `""`, `0`, `false`, `null`, `undefined`
-            // we want to use `null` in the ongoing process chain,
-            // otherwise we would need to take care of `""` and `null`
-            // or `undefined` in tests and other places
-            return currentUser?.firstName || null;
-        },
+            //// if currentUser?.firstName returns a loose falsy value
+            //// like `""`, `0`, `false`, `null`, `undefined`
+            //// we want to use `null` in the ongoing process chain,
+            //// otherwise we would need to take care of `""` and `null`
+            //// or `undefined` in tests and other places
+            //return currentUser?.firstName || null;
+        //},
     },
 
     created() {
@@ -65,7 +65,7 @@ export default Shopware.Component.wrapComponentConfig({
 
     methods: {
         createdComponent() {
-            this.cachedHeadlineGreetingKey = this.cachedHeadlineGreetingKey ?? this.getGreetingTimeKey('daytimeHeadline');
+            //this.cachedHeadlineGreetingKey = this.cachedHeadlineGreetingKey ?? this.getGreetingTimeKey('daytimeHeadline');
         },
 
         /**
@@ -75,37 +75,37 @@ export default Shopware.Component.wrapComponentConfig({
          * @param {String} type either 'daytimeHeadline' or 'daytimeWelcomeText'
          * @returns {String}
          */
-        getGreetingTimeKey(type = 'daytimeHeadline') {
-            const translateKey = `sw-dashboard.introduction.${type}`;
-            const greetings = this.getGreetings(type);
-            const hourNow = new Date().getHours();
+        //getGreetingTimeKey(type = 'daytimeHeadline') {
+            //const translateKey = `sw-dashboard.introduction.${type}`;
+            //const greetings = this.getGreetings(type);
+            //const hourNow = new Date().getHours();
 
-            if (greetings === undefined) {
-                return '';
-            }
+            //if (greetings === undefined) {
+                //return '';
+            //}
 
-            // to find the right timeslot, we user array.find() which will stop after first match
-            // for that reason the greetingTimes must be ordered from latest to earliest hour
-            const greetingTimes = Object.keys(greetings)
-                .map((entry) => parseInt(entry.replace('h', ''), 10))
-                .sort((a, b) => a - b)
-                .reverse();
+            //// to find the right timeslot, we user array.find() which will stop after first match
+            //// for that reason the greetingTimes must be ordered from latest to earliest hour
+            //const greetingTimes = Object.keys(greetings)
+                //.map((entry) => parseInt(entry.replace('h', ''), 10))
+                //.sort((a, b) => a - b)
+                //.reverse();
 
-            /* find the current time slot */
-            const greetingTime = greetingTimes.find((time) => hourNow >= time) || greetingTimes[0];
-            const greetingIndex = Math.floor(Math.random() * greetings[`${greetingTime}h`].length);
+            //[> find the current time slot <]
+            //const greetingTime = greetingTimes.find((time) => hourNow >= time) || greetingTimes[0];
+            //const greetingIndex = Math.floor(Math.random() * greetings[`${greetingTime}h`].length);
 
-            return `${translateKey}.${greetingTime}h[${greetingIndex}]`;
-        },
+            //return `${translateKey}.${greetingTime}h[${greetingIndex}]`;
+        //},
 
-        getGreetings(type = 'daytimeHeadline') {
-            const i18nMessages = this.$i18n.messages;
+        //getGreetings(type = 'daytimeHeadline') {
+            //const i18nMessages = this.$i18n.messages;
 
-            const localeGreetings = i18nMessages.value?.[this.$i18n.locale]?.['sw-dashboard']?.introduction?.[type];
-            const fallbackGreetings =
-                i18nMessages.value?.[this.$i18n.fallbackLocale.value]?.['sw-dashboard']?.introduction?.[type];
+            //const localeGreetings = i18nMessages.value?.[this.$i18n.locale]?.['sw-dashboard']?.introduction?.[type];
+            //const fallbackGreetings =
+                //i18nMessages.value?.[this.$i18n.fallbackLocale.value]?.['sw-dashboard']?.introduction?.[type];
 
-            return localeGreetings ?? fallbackGreetings;
-        },
+            //return localeGreetings ?? fallbackGreetings;
+        //},
     },
 });
