@@ -35,7 +35,9 @@
       "textDeleteConfirm": "Möchten Sie diese Bestellung ({orderNumber}) wirklich löschen?",
       "labelManualOrder": "Erstellt von Admin",
       "tooltipCustomerComment": "Zusätzliche Informationen: {comment}",
-      "tooltipInternalComment": "Interner Kommentar: {comment}"
+      "tooltipInternalComment": "Interner Kommentar: {comment}",
+      "paymentMethod": "Zahlart",
+      "shippingMethod": "Versandart"
     },
     "detail": {
       "buttonCancel": "Änderungen verwerfen",
