@@ -75,6 +75,32 @@ export default {
     },
 
     methods: {
+        async clearLogs(){
+            const httpClient = Shopware.Application.getContainer('init').httpClient;
+            try {
+                await httpClient.post(
+                    '_action/system/log/clear',
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${Shopware.Context.api.authToken.access}`,
+                        },
+                    }
+                );
+
+                this.createNotificationSuccess({
+                    message: this.$tc(
+                        'sw-settings-logging.general.notificationCleared'
+                    )
+                });
+
+                this.getList();
+            } catch (error) {
+                this.createNotificationError({
+                    message: error
+                });
+            }
+        },
         showInfoModal(entryContents) {
             this.displayedLog = entryContents;
         },
