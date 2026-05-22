@@ -723,5 +723,12 @@ frame-ancestors 'none';
         <service id="Shopware\Core\Framework\Adapter\Kernel\EnvIntOrNullProcessor">
             <tag name="container.env_var_processor"/>
         </service>
+
+        <service id="Shopware\Core\Framework\Api\Controller\LogController" public="true">
+            <argument type="service" id="Shopware\Core\Framework\Log\LogCleanupService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
     </services>
 </container>
