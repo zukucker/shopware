@@ -35,7 +35,9 @@
       "textDeleteConfirm": "Do you really want to delete this order ({orderNumber})?",
       "labelManualOrder": "Created by admin",
       "tooltipCustomerComment": "Additional information: {comment}",
-      "tooltipInternalComment": "Internal comment: {comment}"
+      "tooltipInternalComment": "Internal comment: {comment}",
+      "paymentMethod": "Payment method",
+      "shippingMethod": "Shipping method"
     },
     "detail": {
       "buttonCancel": "Discard changes",
