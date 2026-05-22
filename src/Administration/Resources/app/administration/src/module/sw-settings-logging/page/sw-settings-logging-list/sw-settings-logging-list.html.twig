@@ -30,7 +30,11 @@
     {% endblock %}
 
     {% block sw_settings_logging_list_smart_bar_actions %}
-    <template #smart-bar-actions></template>
+    <template #smart-bar-actions>
+        <mt-button @click="clearLogs">
+            {{ $t('sw-settings-logging.button.text') }}
+        </mt-button>
+    </template>
     {% endblock %}
 
     {% block sw_settings_logging_list_content %}
