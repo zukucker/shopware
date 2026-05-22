@@ -243,17 +243,6 @@
                     <sw-time-ago :date="item.orderDateTime" />
                 </template>
                 {% endblock %}
-
-                {% block sw_order_list_grid_columns_payment_method %}
-                <template #column-paymentMethod="{ item }">
-                </template>
-                {% endblock %}
-
-                {% block sw_order_list_grid_columns_shipping_method %}
-                <template #column-shippingMethod="{ item }">
-                </template>
-                {% endblock %}
-
                 {% endblock %}
 
                 {% block sw_order_list_grid_columns_actions %}
