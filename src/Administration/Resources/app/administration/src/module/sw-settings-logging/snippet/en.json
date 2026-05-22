@@ -2,7 +2,11 @@
   "sw-settings-logging": {
     "general": {
       "mainMenuItemGeneral": "Event logs",
-      "placeholderSearchBar": "Search logs..."
+      "placeholderSearchBar": "Search logs...",
+      "notificationCleared": "Event logs cleared"
+    },
+    "button":{
+      "text": "Clear event logs"
     },
     "list": {
       "title": "Logs",

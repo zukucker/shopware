@@ -2,7 +2,11 @@
   "sw-settings-logging": {
     "general": {
       "mainMenuItemGeneral": "Ereignis-Logs",
-      "placeholderSearchBar": "Logs durchsuchen ..."
+      "placeholderSearchBar": "Logs durchsuchen ...",
+      "notificationCleared": "Ereignis-Logs gelöscht"
+    },
+    "button":{
+      "text": "Ereignis-Logs löschen"
     },
     "list": {
       "title": "Logs",
