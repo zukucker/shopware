@@ -22,7 +22,6 @@ use Symfony\Component\Console\Command\Command;
 class LogClearCommand extends Command
 {
     public function __construct(
-        private readonly string $projectDir,
         private readonly LogCleanupService $logCleanupService
     ) {
         parent::__construct();

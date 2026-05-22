@@ -57,7 +57,6 @@
         </service>
 
         <service id="Shopware\Core\Framework\Log\Command\LogClearCommand">
-            <argument>%kernel.project_dir%</argument>
             <argument type="service" id="Shopware\Core\Framework\Log\LogCleanupService" />
             <tag name="console.command"/>
         </service>
