@@ -102,6 +102,10 @@ export default {
             criteria.addAssociation('primaryOrderTransaction.stateMachineState');
             criteria.addAssociation('primaryOrderDelivery.stateMachineState');
             criteria.addAssociation('primaryOrderDelivery.shippingOrderAddress');
+            criteria.addAssociation('transactions')
+            criteria.addAssociation('transactions.paymentMethod');
+            criteria.addAssociation('deliveries.shippingMethod');
+            criteria.addAssociation('billingAddress.country');
 
             if (!Shopware.Feature.isActive('v6.8.0.0')) {
                 criteria.addAssociation('addresses');
@@ -480,6 +484,18 @@ export default {
                     property: 'campaignCode',
                     inlineEdit: 'string',
                     label: 'sw-order.list.columnCampaignCode',
+                    allowResize: true,
+                    visible: false,
+                },
+                {
+                    property: 'transactions.last().paymentMethod.name',
+                    label: 'sw-order.list.paymentMethod',
+                    allowResize: true,
+                    visible: false,
+                },
+                {
+                    property: 'deliveries[0].shippingMethod.name',
+                    label: 'sw-order.list.shippingMethod',
                     allowResize: true,
                     visible: false,
                 },
