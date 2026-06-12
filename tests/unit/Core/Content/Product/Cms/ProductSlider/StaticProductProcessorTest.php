@@ -119,6 +119,9 @@ class StaticProductProcessorTest extends TestCase
         $products = $this->getProducts();
         $searchResult = $this->getEntitySearchResult($products);
 
+        $config = new FieldConfig('products', FieldConfig::SOURCE_STATIC, ['product-2', 'product-1']);
+        $this->config->add($config);
+
         $data = new ElementDataCollection();
         $data->add('product-slider_id', $searchResult);
 
@@ -130,8 +133,7 @@ class StaticProductProcessorTest extends TestCase
         $products = $data->getProducts();
         static::assertInstanceOf(ProductCollection::class, $products);
         static::assertCount(2, $products);
-        static::assertTrue($products->has('product-1'));
-        static::assertTrue($products->has('product-2'));
+        static::assertSame(['product-2', 'product-1'], array_values($products->getIds()));
     }
 
     public function testEnrichHideUnavailableProducts(): void
@@ -143,6 +145,9 @@ class StaticProductProcessorTest extends TestCase
 
         $products = $this->getProducts();
         $searchResult = $this->getEntitySearchResult($products);
+
+        $config = new FieldConfig('products', FieldConfig::SOURCE_STATIC, ['product-2', 'product-1']);
+        $this->config->add($config);
 
         $data = new ElementDataCollection();
         $data->add('product-slider_id', $searchResult);
@@ -157,6 +162,7 @@ class StaticProductProcessorTest extends TestCase
         static::assertCount(1, $products);
         static::assertTrue($products->has('product-1'));
         static::assertFalse($products->has('product-2'));
+        static::assertSame('product-1', $products->first()->getId());
     }
 
     public function testEnrichDoesNothingWithoutSearchResult(): void

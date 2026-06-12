@@ -77,6 +77,11 @@ class StaticProductProcessor extends AbstractProductSliderProcessor
             $products = $this->filterOutOutOfStockHiddenCloseoutProducts($products);
         }
 
+        $productConfig = $slot->getFieldConfig()->get('products');
+        if ($productConfig) {
+            $products->sortByIdArray($productConfig->getArrayValue());
+        }
+
         $slider = new ProductSliderStruct();
         $slider->setProducts($products);
 
