@@ -38,6 +38,17 @@
         </mt-card>
         {% endblock %}
 
+        {% block sw_customer_detail_base_default_document_address_card %}
+            <mt-card title="Abweichende Dokumenten Rechnungsadresse">
+                <mt-text-field
+                        :copyable=true
+                        :disabled="!customerEditMode"
+                        v-model="customer.document_mail"
+                        label="Different invoice address"
+                        />
+            </mt-card>
+        {% endblock %}
+
         {% block sw_customer_detail_custom_field_sets %}
         <mt-card
             v-if="!!customerCustomFieldSets && customerCustomFieldSets.length > 0"
