@@ -69,9 +69,16 @@ class CheckoutOrderPlacedEvent extends Event implements SalesChannelAware, Sales
     public function getMailStruct(): MailRecipientStruct
     {
         if (!$this->mailRecipientStruct instanceof MailRecipientStruct) {
-            $this->mailRecipientStruct = new MailRecipientStruct([
-                $this->order->getOrderCustomer()?->getEmail() ?? '' => $this->order->getOrderCustomer()?->getFirstName() . ' ' . $this->order->getOrderCustomer()?->getLastName(),
-            ]);
+            if(!$this->order->getOrderCustomer()?->getCustomer()?->getDocumentEmail()){
+                $this->mailRecipientStruct = new MailRecipientStruct([
+                    $this->order->getOrderCustomer()?->getEmail() ?? '' => $this->order->getOrderCustomer()?->getFirstName() . ' ' . $this->order->getOrderCustomer()?->getLastName(),
+                ]);
+            }else{
+                $this->mailRecipientStruct = new MailRecipientStruct([
+                    $this->order->getOrderCustomer()?->getCustomer()?->getDocumentEmail() ?? '' => $this->order->getOrderCustomer()?->getFirstName() . ' ' . $this->order->getOrderCustomer()?->getLastName(),
+                ]);
+
+            }
         }
 
         return $this->mailRecipientStruct;
