@@ -175,6 +175,7 @@ class RegisterRoute extends AbstractRegisterRoute
                 $customer['vatIds'] = $data->get('vatIds');
             }
         }
+        $customer['document_mail'] = $data->get('documentEmail');
 
         $customer = $this->doubleOptInService->mapCustomerDoubleOptInData($customer, $context);
 
