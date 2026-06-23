@@ -99,6 +99,7 @@
                                     {% endblock %}
                                 {% endset %}
 
+
                                 {% set formGroupPassword %}
                                     {% block component_account_register_personal_password %}
                                         {% set passwordFieldDescription = '' %}
@@ -162,6 +163,46 @@
                             {% endblock %}
                         </fieldset>
                     {% endblock %}
+                                {% block component_account_register_personal_document_mail_section %}
+                                    <div class="mb-4 g-2">
+                                        {#implement checkbox, if different mail address is wanted#}
+                                        {% set bcheck = true %}
+                                        <input type="checkbox" {% if bcheck %}checked{%endif%} >
+                                        <label>
+                                            {{ 'account.differentInvoiceMailLabel'|trans|sw_sanitize }}
+                                        </label>
+                                    </div>
+                                    {% if bcheck %}
+                                    <div class="row g-2">
+                                    {% block component_account_register_personal_document_mail %}
+                                            {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
+                                                type: 'email',
+                                                label: 'account.documentMailLabel'|trans|sw_sanitize,
+                                                id: 'documentMail',
+                                                name: 'documentEmail',
+                                                value: data.get('documentEmail'),
+                                                autocomplete: 'section-personal email',
+                                                violationPath: '/email',
+                                                validationRules: 'confirmation,required,email',
+                                                additionalClass: 'col-sm-6',
+                                            } %}
+                                    {% endblock %}
+                                    {% block component_account_register_personal_document_mail_confirmation %}
+                                        {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
+                                            type: 'email',
+                                            label: 'account.documentMailLabelConfirmation'|trans|sw_sanitize,
+                                            id: 'documentMailConfirmation',
+                                            name: 'documentEmailConfirmation',
+                                            value: data.get('documentEmailConfirmation'),
+                                            autocomplete: 'section-personal email',
+                                            violationPath: '/email',
+                                            validationRules: 'confirmation,required,email',
+                                            additionalClass: 'col-sm-6',
+                                        } %}
+                                    {% endblock %}
+                                    </div>
+                                    {% endif %}
+                                {% endblock %}
 
                     {% block component_account_register_address %}
                         <div class="register-address mb-5">
