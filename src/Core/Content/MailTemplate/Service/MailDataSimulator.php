@@ -156,6 +156,15 @@ class MailDataSimulator
             $context
         );
 
+        $templateData['revocationRequestFormData'] = [
+            'firstName' => 'Max',
+            'lastName' => 'Mustermann',
+            'email' => 'max.mustermann@example.com',
+            'contractNumber' => 'SW123456789',
+            'comment' => 'Lorem ipsum dolor sit amet.',
+            'submitTime' => $this->clock->now(),
+        ];
+
         foreach ($eventData as $name => $type) {
             if (\array_key_exists($name, $templateData)) {
                 continue;
